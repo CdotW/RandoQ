@@ -11,11 +11,11 @@ project 1 - A Random Quote Generator
  * `quotes` array 
 ***/
 const quotes = [
-  {quete: '1w', by: 'me1'},
-  {quete: '2w', by: 'me2'},
-  {quete: '3w', by: 'me3'},
-  {quete: '4w', by: 'me4'},
-  {quete: '5w', by: 'me5'}
+  {quete: '1w', by: 'me1', citation: '', year:''},
+  {quete: '2w', by: 'me2', citation: '', year: ''}, 
+  {quete: '3w', by: 'me3', citation: '', year: ''},
+  {quete: '4w', by: 'me4', citation: 'c4', year: '1986'},
+  {quete: '5w', by: 'me5', citation: '', year: ''}
 ]
 
 
@@ -27,8 +27,10 @@ function getRandomQuote() {
   const rando = Math.floor(Math.random() * quotes.length);
   let q = quotes[rando].quete;
   let b = quotes[rando].by;
+  let c = quotes[rando].citation;
+  let y = quotes[rando].year;
 
-  return [q, b];
+  return [q, b, c, y];
 }
 
 
@@ -39,8 +41,12 @@ function printQuote() {
   let rnd = getRandomQuote();
   let q = rnd[0];
   let b = rnd[1];
+  let c = rnd[2];
+  let y = rnd[3];
   document.querySelector(".quote").innerHTML = `${q}`;
   document.querySelector(".source").innerHTML = `${b}`;
+  document.querySelector(".source").insertAdjacentHTML('beforeend',` ${c}`);
+  document.querySelector(".source").insertAdjacentHTML('beforeend',` ${y}`);
 }
 
 
