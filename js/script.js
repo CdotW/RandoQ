@@ -10,12 +10,14 @@ project 1 - A Random Quote Generator
 /*** 
  * `quotes` array 
 ***/
+
+
 const quotes = [
-  {quete: '1w', by: 'me1', citation: '', year:''},
-  {quete: '2w', by: 'me2', citation: '', year: ''}, 
-  {quete: '3w', by: 'me3', citation: '', year: ''},
-  {quete: '4w', by: 'me4', citation: 'c4', year: '1986'},
-  {quete: '5w', by: 'me5', citation: '', year: ''}
+  {quote: '1w', source: 'me1'},
+  {quote: '2w', source: 'me2', citation: '', year: ''}, 
+  {quote: '3w', source: 'me3', citation: '', year: ''},
+  {quote: '4w', source: 'me4', citation: 'c4', year: '1986'},
+  {quote: '5w', source: 'me5', citation: '', year: ''}
 ]
 
 
@@ -25,12 +27,12 @@ const quotes = [
 
 function getRandomQuote() {
   const rando = Math.floor(Math.random() * quotes.length);
-  let q = quotes[rando].quete;
-  let b = quotes[rando].by;
+  let q = quotes[rando].quote;
+  let b = quotes[rando].source;
   let c = quotes[rando].citation;
   let y = quotes[rando].year;
 
-  return [q, b, c, y];
+  return [q, b, c, y] ;
 }
 
 
@@ -38,15 +40,32 @@ function getRandomQuote() {
  * `printQuote` function
 ***/
 function printQuote() {
+
+  // grab random quotes and stuff
   let rnd = getRandomQuote();
   let q = rnd[0];
   let b = rnd[1];
   let c = rnd[2];
   let y = rnd[3];
-  document.querySelector(".quote").innerHTML = `${q}`;
-  document.querySelector(".source").innerHTML = `${b}`;
-  document.querySelector(".source").insertAdjacentHTML('beforeend',` ${c}`);
-  document.querySelector(".source").insertAdjacentHTML('beforeend',` ${y}`);
+
+  
+  // string
+  let string = 
+  `<p class="quote">${q}</p>
+   <p class="source">${b}`;
+  // if statement to check if the citation property exists
+  if (c) {
+    string += `<span class="citation">${c}</span>`;
+  }
+  // if statement to check of the year property exists
+  if (y) {
+    string += `<span class="year">${y}</span>`;
+  }
+  // closing </p>
+  string += `</p>`;
+
+  // printing string
+  document.querySelector(".quote-box").innerHTML = `${string}`;
 }
 
 
