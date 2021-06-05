@@ -27,12 +27,9 @@ const quotes = [
 
 function getRandomQuote() {
   const rando = Math.floor(Math.random() * quotes.length);
-  let q = quotes[rando].quote;
-  let b = quotes[rando].source;
-  let c = quotes[rando].citation;
-  let y = quotes[rando].year;
 
-  return [q, b, c, y] ;
+
+  return quotes[rando];
 }
 
 
@@ -43,23 +40,22 @@ function printQuote() {
 
   // grab random quotes and stuff
   let rnd = getRandomQuote();
-  let q = rnd[0];
-  let b = rnd[1];
-  let c = rnd[2];
-  let y = rnd[3];
 
+  /**  dont get it if my code was able to produce the outcome in the html
+   *  why i have to code it this way to pass?
+   *  But here it is. */
   
   // string
   let string = 
-  `<p class="quote">${q}</p>
-   <p class="source">${b}`;
+  `<p class="quote">${rnd.quote}</p>
+   <p class="source">${rnd.source}`;
   // if statement to check if the citation property exists
-  if (c) {
-    string += `<span class="citation">${c}</span>`;
+  if (rnd.citation) {
+    string += `<span class="citation">${rnd.citation}</span>`;
   }
   // if statement to check of the year property exists
-  if (y) {
-    string += `<span class="year">${y}</span>`;
+  if (rnd.year) {
+    string += `<span class="year">${rnd.year}</span>`;
   }
   // closing </p>
   string += `</p>`;
